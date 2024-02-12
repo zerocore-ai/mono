@@ -1,1 +1,1 @@
-# presence-app
+# friday-app
