@@ -1,6 +1,6 @@
 <div align="center">
   <a href="https://github.com/zerocore-ai/friday-app" target="_blank">
-    <img src="https://raw.githubusercontent.com/zerocore-ai/friday-app/main/assets/logo.png" alt="friday-app Logo" width="100"></img>
+    <img src="https://github.com/zerocore-ai/friday-app/blob/main/assets/logo.png" alt="friday-app Logo" width="100"></img>
   </a>
 
   <h1 align="center">friday</h1>
