@@ -1,12 +1,12 @@
 {
   "build": {
-    "beforeBuildCommand": "cd friday-ui && npm run build",
-    "beforeDevCommand": "cd friday-ui && npm run dev",
-    "devPath": "http://localhost:5173",
-    "distDir": "../friday-ui/build"
+    "beforeBuildCommand": "",
+    "beforeDevCommand": "",
+    "devPath": "index.html",
+    "distDir": "index.html"
   },
   "package": {
-    "productName": "friday-core",
+    "productName": "Mono",
     "version": "0.1.0"
   },
   "tauri": {
@@ -28,7 +28,7 @@
         "icons/icon.icns",
         "icons/icon.ico"
       ],
-      "identifier": "com.tauri.dev",
+      "identifier": "ai.zerocore.mono",
       "longDescription": "",
       "macOS": {
         "entitlements": null,
@@ -57,7 +57,7 @@
         "fullscreen": false,
         "height": 600,
         "resizable": true,
-        "title": "Friday",
+        "title": "Mono",
         "width": 800
       }
     ]

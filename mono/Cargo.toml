@@ -1,15 +1,18 @@
 [package]
-name = "app"
+name = "mono"
 version = "0.1.0"
-description = "A Tauri App"
-authors = ["you"]
-license = ""
-repository = ""
-default-run = "app"
+description = "Mono"
+license = "Apache-2.0"
+repository = "https://github.com/zerocore-ai/zerodb"
+authors = ["Stephen Akinyemi <steve@zerocore.ai>"]
 edition = "2021"
-rust-version = "1.60"
+default-run = "mono"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[[bin]]
+name = "mono"
+path = "src/mono.rs"
 
 [build-dependencies]
 tauri-build = { version = "1.5.1", features = [] }
