@@ -11,3 +11,5 @@ private
 *.tmp
 .history
 .DS_Store
+
+mono/gen

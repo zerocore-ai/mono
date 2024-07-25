@@ -3,7 +3,7 @@
     <img src="https://github.com/zerocore-ai/mono/blob/main/assets/logo.png" alt="mono Logo" width="200"></img>
   </a> -->
 
-  <h1 align="center">mono</h1>
+  <h1 align="center">Mono</h1>
 
   <!-- <p>
     <a href="https://crates.io/crates/mono">
