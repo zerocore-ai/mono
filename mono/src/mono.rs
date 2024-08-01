@@ -24,7 +24,7 @@ fn main() {
             window.add_child(
                 WebviewBuilder::new(
                     "Second",
-                    WebviewUrl::External("https://www.tauri.app".parse()?),
+                    WebviewUrl::External("http://127.0.0.1:3000/".parse()?),
                 )
                 .auto_resize(),
                 LogicalPosition::new(width / 2., 0.),

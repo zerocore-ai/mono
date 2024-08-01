@@ -1,0 +1,18 @@
+spin_manifest_version = 2
+
+[application]
+name = "services"
+version = "0.1.0"
+authors = ["Stephen Akinyemi <appcypher@outlook.com>"]
+description = "mono services"
+
+[[trigger.http]]
+route = "/..."
+component = "services"
+
+[component.services]
+source = "target/wasm32-wasi/release/services.wasm"
+allowed_outbound_hosts = []
+[component.services.build]
+command = "cargo build --target wasm32-wasi --release"
+watch = ["src/**/*.rs", "Cargo.toml"]
