@@ -7,6 +7,17 @@
     "frontendDist": ["index.html"]
   },
   "app": {
+    "withGlobalTauri": true,
+    "macOSPrivateApi": true,
+    "windows": [
+      {
+        "height": 60,
+        "width": 600,
+        "decorations": false,
+        "transparent": true,
+        "shadow": true
+      }
+    ],
     "security": {
       "csp": "default-src 'self'; connect-src ipc: http://ipc.localhost",
       "capabilities": [
