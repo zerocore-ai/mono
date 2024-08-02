@@ -1,14 +1,17 @@
 {
   "$schema": "schema.json",
-  "productName": "Mono",
+  "productName": "Prompt Bar",
   "version": "0.1.0",
-  "identifier": "ai.zerocore.mono",
+  "identifier": "ai.zerocore.prompt_bar",
+  "build": {
+    "frontendDist": ["index.html"]
+  },
   "app": {
     "security": {
       "csp": "default-src 'self'; connect-src ipc: http://ipc.localhost",
       "capabilities": [
         {
-          "identifier": "mono-capabilities",
+          "identifier": "prompt-bar-capabilities",
           "permissions": ["app:default"],
           "remote": {
             "urls": ["https://*.tauri.app"]

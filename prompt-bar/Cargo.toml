@@ -1,17 +1,17 @@
 [package]
-name = "mono"
+name = "prompt-bar"
 version = "0.1.0"
-description = "Mono"
+description = "Prompt Bar"
 repository = "https://github.com/zerocore-ai/mono"
 authors = ["Stephen Akinyemi <steve@zerocore.ai>"]
 edition = "2021"
-default-run = "mono"
+default-run = "prompt-bar"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [[bin]]
-name = "mono"
-path = "src/mono.rs"
+name = "prompt-bar"
+path = "src/prompt_bar.rs"
 
 [build-dependencies]
 tauri-build = { version = "2.0.0-beta.19", features = [] }
@@ -19,7 +19,11 @@ tauri-build = { version = "2.0.0-beta.19", features = [] }
 [dependencies]
 serde_json = "1.0"
 serde = { version = "1.0", features = ["derive"] }
-tauri = { version = "2.0.0-beta.22", features = ["unstable"] }
+tauri = { version = "2.0.0-beta.22", features = [ "unstable"] }
+window-vibrancy = { version = "0.5.0" }
+
+[target."cfg(target_os = \"macos\")".dependencies]
+cocoa = "0.25"
 
 [features]
 # this feature is used for production builds or when `devPath` points to the filesystem and the built-in dev server is disabled.

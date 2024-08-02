@@ -1,2 +1,2 @@
 [workspace]
-members = ["mono"]
+members = ["mono", "prompt-bar"]

@@ -12,4 +12,4 @@ private
 .history
 .DS_Store
 
-mono/gen
+**/gen

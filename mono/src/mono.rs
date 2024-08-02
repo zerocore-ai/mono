@@ -15,7 +15,11 @@ fn main() {
 
             // First child
             window.add_child(
-                WebviewBuilder::new("First", WebviewUrl::App(Default::default())).auto_resize(),
+                WebviewBuilder::new(
+                    "First",
+                    WebviewUrl::External("http://127.0.0.1:3000/".parse()?),
+                )
+                .auto_resize(),
                 LogicalPosition::new(0., 0.),
                 LogicalSize::new(width / 2., height),
             )?;
