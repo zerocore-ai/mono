@@ -5,16 +5,7 @@
   "identifier": "ai.zerocore.mono",
   "app": {
     "security": {
-      "csp": "default-src 'self'; connect-src ipc: http://ipc.localhost",
-      "capabilities": [
-        {
-          "identifier": "mono-capabilities",
-          "permissions": ["app:default"],
-          "remote": {
-            "urls": ["https://*.tauri.app"]
-          }
-        }
-      ]
+      "csp": "default-src 'self'; connect-src ipc: http://ipc.localhost"
     }
   },
   "bundle": {

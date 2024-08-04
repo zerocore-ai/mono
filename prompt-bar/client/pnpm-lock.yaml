@@ -8,6 +8,12 @@ importers:
 
   .:
     dependencies:
+      '@solid-primitives/autofocus':
+        specifier: ^0.0.111
+        version: 0.0.111(solid-js@1.8.11)
+      '@tauri-apps/plugin-global-shortcut':
+        specifier: 2.0.0-rc.0
+        version: 2.0.0-rc.0
       solid-js:
         specifier: ^1.8.11
         version: 1.8.11
@@ -444,6 +450,11 @@ packages:
     peerDependencies:
       solid-js: ^1.8.0
 
+  '@solid-primitives/autofocus@0.0.111':
+    resolution: {integrity: sha512-WQUCcBzUmLdmHeyN0Z1lH75IN1IGIbvOMTcBEmuCY5DXeahRJm3riTGqVj+XOA4G+NHCMt7wPOJoYOAuwUov/Q==}
+    peerDependencies:
+      solid-js: ^1.6.12
+
   '@solid-primitives/bounds@0.0.118':
     resolution: {integrity: sha512-Qj42w8LlnhJ3r/t+t0c0vrdwIvvQMPgjEFGmLiwREaA85ojLbgL9lSBq2tKvljeLCvRVkgj10KEUf+vc99VCIg==}
     peerDependencies:
@@ -518,6 +529,18 @@ packages:
     resolution: {integrity: sha512-11ypVbp987XxETeRqY5Y3OmmTpm8/jZqJXRvo6AyqBthzkvvjEdReuUMU2yVb+pwWGxfZpWHZ6EUCcGXUMhfwg==}
     peerDependencies:
       solid-js: ^1.6.12
+
+  '@solid-primitives/utils@6.2.3':
+    resolution: {integrity: sha512-CqAwKb2T5Vi72+rhebSsqNZ9o67buYRdEJrIFzRXz3U59QqezuuxPsyzTSVCacwS5Pf109VRsgCJQoxKRoECZQ==}
+    peerDependencies:
+      solid-js: ^1.6.12
+
+  '@tauri-apps/api@2.0.0-rc.0':
+    resolution: {integrity: sha512-v454Qs3REHc3Za59U+/eSmBsdmF+3NE5+76+lFDaitVqN4ZglDHENDaMARYKGJVZuxiSkzyqG0SeG7lLQjVkPA==}
+    engines: {node: '>= 18.18', npm: '>= 6.6.0', yarn: '>= 1.19.1'}
+
+  '@tauri-apps/plugin-global-shortcut@2.0.0-rc.0':
+    resolution: {integrity: sha512-rcefV4AG+vnbTtGc07hDn4Uj8u//NpuqHVg1CShACyiCS0q2sZrDVC3qPN3RGhzQyeIOPq4bY1kQRHODffKXZA==}
 
   '@types/babel__core@7.20.5':
     resolution: {integrity: sha512-qoQprZvz5wQFJwMDqeseRXWv3rqMvhgpbXFfVyWhbx9X47POIA6i/+dXefEmZKoAgOaTdaIgNSMqMIU61yRyzA==}
@@ -1154,6 +1177,11 @@ snapshots:
       '@solid-primitives/utils': 6.2.2(solid-js@1.8.11)
       solid-js: 1.8.11
 
+  '@solid-primitives/autofocus@0.0.111(solid-js@1.8.11)':
+    dependencies:
+      '@solid-primitives/utils': 6.2.3(solid-js@1.8.11)
+      solid-js: 1.8.11
+
   '@solid-primitives/bounds@0.0.118(solid-js@1.8.11)':
     dependencies:
       '@solid-primitives/event-listener': 2.3.1(solid-js@1.8.11)
@@ -1237,6 +1265,16 @@ snapshots:
   '@solid-primitives/utils@6.2.2(solid-js@1.8.11)':
     dependencies:
       solid-js: 1.8.11
+
+  '@solid-primitives/utils@6.2.3(solid-js@1.8.11)':
+    dependencies:
+      solid-js: 1.8.11
+
+  '@tauri-apps/api@2.0.0-rc.0': {}
+
+  '@tauri-apps/plugin-global-shortcut@2.0.0-rc.0':
+    dependencies:
+      '@tauri-apps/api': 2.0.0-rc.0
 
   '@types/babel__core@7.20.5':
     dependencies:
@@ -1416,6 +1454,7 @@ snapshots:
       '@solid-devtools/debugger': 0.23.3(solid-js@1.8.11)
       '@solid-devtools/shared': 0.13.1(solid-js@1.8.11)
       solid-js: 1.8.11
+    optionalDependencies:
       vite: 5.0.11
     transitivePeerDependencies:
       - supports-color
@@ -1474,7 +1513,7 @@ snapshots:
       fsevents: 2.3.3
 
   vitefu@0.2.5(vite@5.0.11):
-    dependencies:
+    optionalDependencies:
       vite: 5.0.11
 
   yallist@3.1.1: {}

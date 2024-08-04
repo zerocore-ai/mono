@@ -7,23 +7,34 @@ authors = ["Stephen Akinyemi <steve@zerocore.ai>"]
 edition = "2021"
 default-run = "prompt-bar"
 
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
-
 [[bin]]
 name = "prompt-bar"
-path = "src/prompt_bar.rs"
+path = "bin/prompt_bar.rs"
+
+[lib]
+name = "prompt_bar"
+path = "lib/lib.rs"
+crate-type = ["staticlib", "cdylib", "rlib"]
 
 [build-dependencies]
-tauri-build = { version = "2.0.0-beta.19", features = [] }
+tauri-build.workspace = true
 
 [dependencies]
-serde_json = "1.0"
-serde = { version = "1.0", features = ["derive"] }
-tauri = { version = "2.0.0-beta.22", features = [ "macos-private-api", "unstable"] }
+serde_json.workspace = true
+serde.workspace = true
+tauri = { workspace = true, features = [
+    "macos-private-api",
+    "unstable",
+    "tray-icon",
+] }
+thiserror.workspace = true
 window-vibrancy = { version = "0.5.0" }
 
 [target."cfg(target_os = \"macos\")".dependencies]
 cocoa = "0.25"
+
+[target."cfg(not(any(target_os = \"android\", target_os = \"ios\")))".dependencies]
+tauri-plugin-global-shortcut = "2.0.0-rc"
 
 [features]
 # this feature is used for production builds or when `devPath` points to the filesystem and the built-in dev server is disabled.

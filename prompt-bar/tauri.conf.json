@@ -2,9 +2,12 @@
   "$schema": "schema.json",
   "productName": "Prompt Bar",
   "version": "0.1.0",
-  "identifier": "ai.zerocore.prompt_bar",
+  "identifier": "ai.zerocore.promptbar",
   "build": {
-    "frontendDist": ["index.html"]
+    "devUrl": "http://localhost:5120",
+    "frontendDist": "./client/dist",
+    "beforeDevCommand": "pnpm run dev",
+    "beforeBuildCommand": "pnpm run build"
   },
   "app": {
     "withGlobalTauri": true,
@@ -20,15 +23,7 @@
     ],
     "security": {
       "csp": "default-src 'self'; connect-src ipc: http://ipc.localhost",
-      "capabilities": [
-        {
-          "identifier": "prompt-bar-capabilities",
-          "permissions": ["app:default"],
-          "remote": {
-            "urls": ["https://*.tauri.app"]
-          }
-        }
-      ]
+      "capabilities": ["main-capabilities"]
     }
   },
   "bundle": {

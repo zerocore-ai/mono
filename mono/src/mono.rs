@@ -3,6 +3,14 @@
 
 use tauri::{LogicalPosition, LogicalSize, WebviewBuilder, WebviewUrl, WindowBuilder};
 
+const INIT_SCRIPT: &str = r#"
+setTimeout(() => {
+    console.log("hello world from js init script");
+}, 2000);
+
+window.__MY_CUSTOM_PROPERTY__ = { foo: 'bar' };
+"#;
+
 fn main() {
     tauri::Builder::default()
         .setup(|app| {
@@ -17,7 +25,7 @@ fn main() {
             window.add_child(
                 WebviewBuilder::new(
                     "First",
-                    WebviewUrl::External("http://127.0.0.1:3000/".parse()?),
+                    WebviewUrl::External("http://localhost:5130/".parse()?),
                 )
                 .auto_resize(),
                 LogicalPosition::new(0., 0.),
@@ -28,10 +36,12 @@ fn main() {
             window.add_child(
                 WebviewBuilder::new(
                     "Second",
-                    WebviewUrl::External("http://127.0.0.1:3000/".parse()?),
+                    WebviewUrl::External("http://localhost:8081/".parse()?),
+                    // WebviewUrl::App("../index.html".into())
                 )
+                .initialization_script(INIT_SCRIPT)
                 .auto_resize(),
-                LogicalPosition::new(width / 2., 0.),
+                LogicalPosition::new(25., 0.),
                 LogicalSize::new(width / 2., height),
             )?;
 
