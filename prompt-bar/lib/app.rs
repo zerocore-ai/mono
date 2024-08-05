@@ -1,10 +1,8 @@
 //! The main entry point for the Prompt Bar
 
-use std::sync::atomic::{AtomicBool, Ordering};
-
 use tauri::{App, Manager, RunEvent};
 
-use crate::{error::Result, plugins, tray, window};
+use crate::{cmd, error::Result, plugins, tray, window};
 
 //--------------------------------------------------------------------------------------------------
 // Types
@@ -18,10 +16,7 @@ pub struct PromptBar {
 
 /// The state of the Prompt Bar.
 #[derive(Default)]
-pub struct AppState {
-    /// Whether the Prompt Bar is currently hidden.
-    pub hidden: AtomicBool,
-}
+pub struct AppState {}
 
 //--------------------------------------------------------------------------------------------------
 // Methods
@@ -30,19 +25,32 @@ pub struct AppState {
 impl PromptBar {
     /// Creates a new instance of the Prompt Bar.
     pub fn new() -> Result<Self> {
-        let app = tauri::Builder::default()
-            .setup(|app| {
-                // Initialize the app state
-                app.manage(AppState::default());
+        let builder = tauri::Builder::default();
 
-                // Set up the plugins, window, and tray
-                plugins::setup(app)?;
-                window::setup(app)?;
-                tray::setup(app)?;
+        // Set plugins
+        #[cfg(target_os = "macos")]
+        let builder = builder.plugin(tauri_nspanel::init());
+        let builder = builder.plugin(tauri_plugin_window_state::Builder::default().build());
+        let builder = builder.plugin(tauri_plugin_global_shortcut::Builder::new().build());
 
-                Ok(())
-            })
-            .build(tauri::generate_context!("./tauri.conf.json"))?;
+        // Set invoke handlers
+        let builder = builder.invoke_handler(tauri::generate_handler![cmd::hide_window]);
+
+        // Setup
+        let builder = builder.setup(|app| {
+            // Initialize the app state
+            app.manage(AppState::default());
+
+            // Set up the plugins, window, and tray
+            plugins::setup(app)?;
+            window::setup(app)?;
+            tray::setup(app)?;
+
+            Ok(())
+        });
+
+        // Build app
+        let app = builder.build(tauri::generate_context!("./tauri.conf.json"))?;
 
         Ok(Self { app })
     }
@@ -56,17 +64,5 @@ impl PromptBar {
                 api.prevent_exit();
             }
         })
-    }
-}
-
-impl AppState {
-    /// Sets the hidden state of the Prompt Bar.
-    pub fn set_hidden(&self, hidden: bool) {
-        self.hidden.store(hidden, Ordering::SeqCst);
-    }
-
-    /// Gets the hidden state of the Prompt Bar.
-    pub fn get_hidden(&self) -> bool {
-        self.hidden.load(Ordering::SeqCst)
     }
 }

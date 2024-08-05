@@ -29,9 +29,11 @@ tauri = { workspace = true, features = [
 ] }
 thiserror.workspace = true
 window-vibrancy = { version = "0.5.0" }
+tauri-plugin-window-state.workspace = true
 
 [target."cfg(target_os = \"macos\")".dependencies]
 cocoa = "0.25"
+tauri-nspanel = { git = "https://github.com/ahkohd/tauri-nspanel", branch = "v2" }
 
 [target."cfg(not(any(target_os = \"android\", target_os = \"ios\")))".dependencies]
 tauri-plugin-global-shortcut = "2.0.0-rc"

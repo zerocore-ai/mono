@@ -4,6 +4,12 @@ use tauri_plugin_global_shortcut::{GlobalShortcutExt, ShortcutState};
 use crate::{window, Result};
 
 //--------------------------------------------------------------------------------------------------
+// Constants
+//--------------------------------------------------------------------------------------------------
+
+const GLOBAL_SHORTCUT_CTRL_SPACE: &str = "ctrl+space";
+
+//--------------------------------------------------------------------------------------------------
 // Functions: Setup
 //--------------------------------------------------------------------------------------------------
 
@@ -17,17 +23,13 @@ pub(crate) fn setup(app: &mut App) -> Result<()> {
 //--------------------------------------------------------------------------------------------------
 
 fn global_shortcuts_plugin(app: &mut App) -> Result<()> {
-    // Register the global shortcut plugin
-    app.handle()
-        .plugin(tauri_plugin_global_shortcut::Builder::new().build())?;
-
     // Get the global shortcut instance
     let shortcut = app.global_shortcut();
 
     // Register a global shortcut
-    shortcut.on_shortcut("ctrl+space", |app, _, event| {
+    shortcut.on_shortcut(GLOBAL_SHORTCUT_CTRL_SPACE, |app, _, event| {
         if event.state == ShortcutState::Pressed {
-            window::toggle_visibility(app);
+            window::toggle_visibility(app).unwrap();
         }
     })?;
 

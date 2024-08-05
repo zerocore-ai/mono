@@ -1,11 +1,12 @@
-// use tauri::App;
+use tauri::AppHandle;
 
-// use crate::Result;
+use crate::window;
 
 //--------------------------------------------------------------------------------------------------
 // Functions
 //--------------------------------------------------------------------------------------------------
 
-// pub(crate) fn setup(_app: &mut App) -> Result<()> {
-//     Ok(())
-// }
+#[tauri::command]
+pub(crate) fn hide_window(app: AppHandle) {
+    window::hide(&app)
+}

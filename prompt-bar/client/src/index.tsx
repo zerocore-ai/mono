@@ -12,16 +12,4 @@ if (import.meta.env.DEV && !(root instanceof HTMLElement)) {
   );
 }
 
-// await register("Control+.", (event) => {
-//   if (event.state === "Pressed") {
-//     console.log("Shortcut triggered");
-//   }
-// });
-
-// await register("Control+H", (event) => {
-//   if (event.state === "Pressed") {
-//     console.log("Shortcut triggered");
-//   }
-// });
-
 render(() => <App />, root!);

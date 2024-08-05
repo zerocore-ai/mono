@@ -17,6 +17,10 @@ pub enum PromptBarError {
     /// A wrapper around the `tauri_plugin_global_shortcut::Error` type.
     #[error(transparent)]
     TauriShortcutsError(#[from] tauri_plugin_global_shortcut::Error),
+
+    /// A wrapper around the `window_vibrancy::Error` type.
+    #[error(transparent)]
+    WindowVibrancyError(#[from] window_vibrancy::Error),
 }
 
 //--------------------------------------------------------------------------------------------------

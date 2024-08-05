@@ -17,6 +17,8 @@
   },
   "dependencies": {
     "@solid-primitives/autofocus": "^0.0.111",
+    "@solid-primitives/keyboard": "^1.2.8",
+    "@tauri-apps/api": "2.0.0-rc.0",
     "@tauri-apps/plugin-global-shortcut": "2.0.0-rc.0",
     "solid-js": "^1.8.11"
   }
