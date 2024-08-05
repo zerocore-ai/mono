@@ -46,8 +46,8 @@ const App: Component = () => {
   });
 
   return (
-    <form>
-      <input ref={inputElementRef} type="text" placeholder="Search" class={styles.input} />
+    <form data-tauri-drag-region>
+      <input data-tauri-drag-region ref={inputElementRef} type="text" placeholder="Search" class={styles.input} />
     </form>
   );
 };

@@ -1,5 +1,5 @@
 use cocoa::appkit::{NSMainMenuWindowLevel, NSWindowCollectionBehavior};
-use tauri::{App, AppHandle, Emitter, Manager, WebviewWindow, Wry};
+use tauri::{App, AppHandle, Emitter, Listener, Manager, WebviewWindow, Wry};
 use tauri_nspanel::{
     objc_id::ShareId, panel_delegate, raw_nspanel::RawNSPanel, ManagerExt, WebviewWindowExt,
 };
@@ -98,13 +98,20 @@ fn make_window_spotlight_like(window: &WebviewWindow<Wry>) -> Result<()> {
             | NSWindowCollectionBehavior::NSWindowCollectionBehaviorCanJoinAllSpaces,
     );
 
+    let app = window.app_handle();
+
     // Set the nspanel delegate
-    set_nspanel_delegate(ns_panel, window.app_handle().clone())?;
+    set_nspanel_delegate(&ns_panel, app.clone())?;
+
+    // Hide the window when the app is not the active app
+    app.listen(WINDOW_DID_RESIGN_KEY, move |_| {
+        ns_panel.order_out(None);
+    });
 
     Ok(())
 }
 
-fn set_nspanel_delegate(ns_panel: ShareId<RawNSPanel>, app: AppHandle) -> Result<()> {
+fn set_nspanel_delegate(ns_panel: &ShareId<RawNSPanel>, app: AppHandle) -> Result<()> {
     let delegate = panel_delegate!(PanelDelegate {
         window_did_become_key,
         window_did_resign_key,
@@ -112,11 +119,9 @@ fn set_nspanel_delegate(ns_panel: ShareId<RawNSPanel>, app: AppHandle) -> Result
 
     delegate.set_listener(Box::new(move |event| match event.as_str() {
         WINDOW_DID_BECOME_KEY => {
-            println!("Window did become key");
             let _ = app.emit(WINDOW_DID_BECOME_KEY, ());
         }
         WINDOW_DID_RESIGN_KEY => {
-            println!("Window did resign key");
             let _ = app.emit(WINDOW_DID_RESIGN_KEY, ());
         }
         _ => {}
